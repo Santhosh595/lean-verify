@@ -25,6 +25,35 @@ class Severity(Enum):
     WARNING = "warning"
     INFO = "info"
 
+    @property
+    def rank(self) -> int:
+        """Numeric rank for ordering. Higher is more severe.
+
+        Required because Enum members are not orderable by default, and the CLI
+        filters results with ``severity >= min_severity``.
+        """
+        return _SEVERITY_RANK[self]
+
+    def __ge__(self, other: Any) -> bool:
+        if not isinstance(other, Severity):
+            return NotImplemented
+        return self.rank >= other.rank
+
+    def __gt__(self, other: Any) -> bool:
+        if not isinstance(other, Severity):
+            return NotImplemented
+        return self.rank > other.rank
+
+    def __le__(self, other: Any) -> bool:
+        if not isinstance(other, Severity):
+            return NotImplemented
+        return self.rank <= other.rank
+
+    def __lt__(self, other: Any) -> bool:
+        if not isinstance(other, Severity):
+            return NotImplemented
+        return self.rank < other.rank
+
     @classmethod
     def from_string(cls, value: str) -> "Severity":
         """Create a Severity from a string value."""
@@ -33,6 +62,24 @@ class Severity(Enum):
             if severity.value == value_lower:
                 return severity
         raise ValueError(f"Unknown severity: {value}")
+
+
+# ERROR > WARNING > INFO, matching the README's stated severity ranking.
+_SEVERITY_RANK: Dict[Severity, int] = {
+    Severity.ERROR: 3,
+    Severity.WARNING: 2,
+    Severity.INFO: 1,
+}
+
+
+class Status(Enum):
+    """Status of a verification operation."""
+
+    PENDING = "pending"
+    RUNNING = "running"
+    COMPLETED = "completed"
+    FAILED = "failed"
+    SKIPPED = "skipped"
 
 
 @dataclass
@@ -44,23 +91,14 @@ class VerificationResult:
     message: str
     line: Optional[int] = None
     column: Optional[int] = None
-    status: "Status" = "pending"
+    status: Status = Status.PENDING
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert result to dictionary for JSON serialization."""
         data = asdict(self)
         data["severity"] = self.severity.value
+        data["status"] = Status(self.status).value
         return data
-
-
-class Status(Enum):
-    """Status of a verification operation."""
-
-    PENDING = "pending"
-    RUNNING = "running"
-    COMPLETED = "completed"
-    FAILED = "failed"
-    SKIPPED = "skipped"
 
 
 class LeanVerifier:

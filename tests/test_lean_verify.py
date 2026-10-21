@@ -324,7 +324,7 @@ class TestExceptionClasses:
         assert str(error) == "Test error"
 
         error_with_cause = LeanVerifyError("Test error", ValueError("cause"))
-        assert "cause by" in str(error_with_cause).lower()
+        assert "caused by" in str(error_with_cause).lower()
 
     def test_mock_toolchain_error(self):
         """Test MockToolchainError."""

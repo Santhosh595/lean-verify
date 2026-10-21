@@ -1,5 +1,9 @@
 # lean-verify — Lean 4 proof-verification harness CLI
 
+[![CI](https://github.com/Santhosh595/lean-verify/actions/workflows/ci.yml/badge.svg)](https://github.com/Santhosh595/lean-verify/actions/workflows/ci.yml)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 **Status:** Complete (GREENLIT by user 2026-08-26) → SLICE 1 ONLY
 
 **Purpose:** Harness for reporting which Lean 4 theorems/definitions actually compile, severity-ranked per file, with --json output and CI exit codes. The "is the model's proof real?" checker.
