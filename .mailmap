@@ -1,0 +1,21 @@
+# Map every author identity used in this repository onto the account that owns
+# the remote, so GitHub links the commits and counts them in the contribution
+# graph instead of showing an unattributed grey avatar.
+#
+# Format:  <proper-name> <proper-email> <commit-name> <commit-email>
+#
+# The commits below were authored on this machine by local agent identities
+# and by an unregistered placeholder address. None of those addresses is
+# registered with GitHub, so without this file the commits show as unlinked
+# and do not appear in the contribution graph.
+#
+# This changes no commit content and requires no history rewrite.
+
+Santhosh595 <lmjsanthosh.l@gmail.com> Santhosh595 <santhosh595@example.com>
+Santhosh595 <lmjsanthosh.l@gmail.com> Santhosh <lmjsanthosh.l@gmail.com>
+Santhosh595 <lmjsanthosh.l@gmail.com> Santhosh L <lmjsanthosh.l@gmail.com>
+Santhosh595 <lmjsanthosh.l@gmail.com> Agent A <agent-a@localhost>
+Santhosh595 <lmjsanthosh.l@gmail.com> Agent B <agent-b@localhost>
+Santhosh595 <lmjsanthosh.l@gmail.com> Hermes Agent <hermes@local>
+Santhosh595 <lmjsanthosh.l@gmail.com> hermes <hermes@local>
+Santhosh595 <lmjsanthosh.l@gmail.com> sunny <sunny@localhost>
